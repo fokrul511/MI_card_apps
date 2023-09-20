@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mi_card_apps/pages/gmail_QR.dart';
 
 import 'desig.dart';
 
@@ -7,10 +8,29 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.teal,
-      body: SafeArea(
-        child: Column(
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.teal,
+          actions: [
+            IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const GmailQR(),
+                  ),
+                );
+              },
+              icon: const Icon(
+                Icons.qr_code,
+                color: Colors.white,
+              ),
+            ),
+          ],
+        ),
+        backgroundColor: Colors.teal,
+        body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const CircleAvatar(
@@ -38,14 +58,14 @@ class HomeScreen extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
-            PhoneEmail(
+            const PhoneEmail(
               icons: Icons.phone,
               text: '+8801726-032986',
             ),
-            PhoneEmail(
+            const PhoneEmail(
               icons: Icons.email_outlined,
               text: 'islamfokrul2002@gmail.com',
             ),
