@@ -80,7 +80,7 @@ flutter:
           
     - family: Robot
       fonts:
-        - asset: fonts/RobotoCondensed-Regular
+        - asset: fonts/RobotoCondensed-Regular.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
   #
