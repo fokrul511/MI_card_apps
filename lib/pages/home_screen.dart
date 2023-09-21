@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:mi_card_apps/pages/gmail_QR.dart';
+import 'package:url_launcher/url_launcher.dart';
+import '../widgets/desig.dart';
+import 'package:share_plus/share_plus.dart';
 
-import 'desig.dart';
-
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -15,15 +20,10 @@ class HomeScreen extends StatelessWidget {
           actions: [
             IconButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const GmailQR(),
-                  ),
-                );
+                shareonpresser();
               },
               icon: const Icon(
-                Icons.qr_code,
+                Icons.share,
                 color: Colors.white,
               ),
             ),
@@ -61,17 +61,34 @@ class HomeScreen extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            const PhoneEmail(
+            PhoneEmail(
+              onTap: () async {
+                final Uri url = Uri(
+                  scheme: 'tel',
+                  path: '+8801726032986',
+                );
+                if (await canLaunchUrl(url)) {
+                  await launchUrl(url);
+                } else {}
+              },
               icons: Icons.phone,
               text: '+8801726-032986',
             ),
             const PhoneEmail(
               icons: Icons.email_outlined,
               text: 'islamfokrul2002@gmail.com',
+              iconsN: Icons.qr_code,
             ),
           ],
         ),
       ),
     );
+  }
+
+  void shareonpresser() {
+    String message =
+        'https://drive.google.com/file/d/10aEFX_eLznUL_u1Z0GmxC8q-EYSBMD2g/view?usp=drive_link';
+
+    Share.share(message);
   }
 }
